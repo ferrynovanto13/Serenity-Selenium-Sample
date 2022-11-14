@@ -36,6 +36,8 @@ public class LambdaTestScenario implements AfterAWebdriverScenario, BeforeAWebdr
 		ltOptions.put("project", "Untitled");
 		ltOptions.put("selenium_version", "4.0.0");
 		ltOptions.put("w3c", true);
+		ltOptions.put("network", true);
+		ltOptions.put("console", true);
 		browserOptions.setCapability("LT:Options", ltOptions);
 
 		if ((driver == null) || (!RemoteDriver.isARemoteDriver(driver))) {
