@@ -3,6 +3,7 @@ package com.lambdatest.cucumber.pages;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.serenitybdd.core.steps.UIInteractionSteps;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
@@ -20,9 +21,11 @@ public class TestScenario2And3Controller extends UIInteractionSteps {
 
         WebDriver webDriver = this.getDriver();
         Actions moveSlider = new Actions(webDriver);
-        Action action = moveSlider.dragAndDropBy(element, 115, 0).build();
-
-        action.perform();
+        moveSlider.click(element).build().perform();
+        for (int i = 0; i < 45; i++)
+        {
+            moveSlider.sendKeys(Keys.ARROW_RIGHT).build().perform();
+        }
     }
 
     public int returnValue(){

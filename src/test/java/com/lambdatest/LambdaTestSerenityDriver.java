@@ -6,6 +6,7 @@ import java.util.Iterator;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -32,6 +33,19 @@ public class LambdaTestSerenityDriver implements DriverSource {
 		ltOptions.put("network", true);
 		ltOptions.put("console", true);
 		browserOptions.setCapability("LT:Options", ltOptions);
+
+		FirefoxOptions browserOptionsFirefox = new FirefoxOptions();
+		browserOptionsFirefox.setPlatformName("Windows 10");
+		browserOptionsFirefox.setBrowserVersion("107.0");
+		HashMap<String, Object> ltOptionsFirefox = new HashMap<String, Object>();
+		ltOptionsFirefox.put("username", "ferry.novanto");
+		ltOptionsFirefox.put("accessKey", "ApYj63Li2TwkxRY1AbftAdvsoDdt9w8RUdP17JhaZyB5Fak6tA");
+		ltOptionsFirefox.put("visual", true);
+		ltOptionsFirefox.put("video", true);
+		ltOptionsFirefox.put("network", true);
+		ltOptionsFirefox.put("project", "Untitled");
+		ltOptionsFirefox.put("w3c", true);
+		browserOptionsFirefox.setCapability("LT:Options", ltOptions);
 
 		String username = System.getenv("LT_USERNAME");
 		if (username == null) {
