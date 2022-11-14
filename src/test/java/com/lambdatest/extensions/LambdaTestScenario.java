@@ -3,11 +3,14 @@ package com.lambdatest.extensions;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.HashMap;
 
 import org.apache.http.client.methods.HttpPatch;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
+import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import net.serenitybdd.core.webdriver.RemoteDriver;
@@ -21,6 +24,19 @@ public class LambdaTestScenario implements AfterAWebdriverScenario, BeforeAWebdr
 
 	@Override
 	public void apply(EnvironmentVariables environmentVariables, TestOutcome testOutcome, WebDriver driver) {
+
+		ChromeOptions browserOptions = new ChromeOptions();
+		browserOptions.setPlatformName("Windows 10");
+		browserOptions.setBrowserVersion("107.0");
+		HashMap<String, Object> ltOptions = new HashMap<String, Object>();
+		ltOptions.put("username", "ferry.novanto");
+		ltOptions.put("accessKey", "ApYj63Li2TwkxRY1AbftAdvsoDdt9w8RUdP17JhaZyB5Fak6tA");
+		ltOptions.put("visual", true);
+		ltOptions.put("video", true);
+		ltOptions.put("project", "Untitled");
+		ltOptions.put("selenium_version", "4.0.0");
+		ltOptions.put("w3c", true);
+		browserOptions.setCapability("LT:Options", ltOptions);
 
 		if ((driver == null) || (!RemoteDriver.isARemoteDriver(driver))) {
 			return;
@@ -73,6 +89,15 @@ public class LambdaTestScenario implements AfterAWebdriverScenario, BeforeAWebdr
 	}
 
 	@Override
+	public MutableCapabilities apply(EnvironmentVariables environmentVariables, SupportedWebDriver supportedWebDriver, TestOutcome testOutcome, MutableCapabilities mutableCapabilities) {
+		return null;
+	}
+
+	@Override
+	public boolean isActivated(EnvironmentVariables environmentVariables) {
+		return AfterAWebdriverScenario.super.isActivated(environmentVariables);
+	}
+
 	public DesiredCapabilities apply(EnvironmentVariables environmentVariables, SupportedWebDriver driver,
 			TestOutcome testOutcome, DesiredCapabilities capabilities) {
 

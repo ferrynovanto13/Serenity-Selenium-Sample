@@ -1,20 +1,35 @@
 package com.lambdatest;
 
 import java.net.URL;
+import java.util.HashMap;
 import java.util.Iterator;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import net.thucydides.core.util.EnvironmentVariables;
-import net.thucydides.core.util.SystemEnvironmentVariables;
+import net.thucydides.core.environment.SystemEnvironmentVariables;
 import net.thucydides.core.webdriver.DriverSource;
 
 public class LambdaTestSerenityDriver implements DriverSource {
 
 	public WebDriver newDriver() {
 		EnvironmentVariables environmentVariables = SystemEnvironmentVariables.createEnvironmentVariables();
+
+		ChromeOptions browserOptions = new ChromeOptions();
+		browserOptions.setPlatformName("Windows 10");
+		browserOptions.setBrowserVersion("107.0");
+		HashMap<String, Object> ltOptions = new HashMap<String, Object>();
+		ltOptions.put("username", "ferry.novanto");
+		ltOptions.put("accessKey", "ApYj63Li2TwkxRY1AbftAdvsoDdt9w8RUdP17JhaZyB5Fak6tA");
+		ltOptions.put("visual", true);
+		ltOptions.put("video", true);
+		ltOptions.put("project", "Untitled");
+		ltOptions.put("selenium_version", "4.0.0");
+		ltOptions.put("w3c", true);
+		browserOptions.setCapability("LT:Options", ltOptions);
 
 		String username = System.getenv("LT_USERNAME");
 		if (username == null) {
@@ -58,6 +73,6 @@ public class LambdaTestSerenityDriver implements DriverSource {
 	}
 
 	public boolean takesScreenshots() {
-		return false;
+		return true;
 	}
 }

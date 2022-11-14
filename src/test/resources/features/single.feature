@@ -4,4 +4,3 @@ Feature: Google's Search Functionality
         When I click on checkboxes
         And I add new Element "Complete LambdaTest Tutorial"
         Then I Compare the new added element text with "Complete LambdaTest Tutorial"
-
