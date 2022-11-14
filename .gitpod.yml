@@ -2,5 +2,8 @@
 
 # List the start up tasks. You can start them in parallel in multiple terminals. See https://www.gitpod.io/docs/config-start-tasks/
 tasks:
-  - init: echo "Start Test"
+  - init: echo "Start Single Test"
     command: mvn verify -P single
+
+  - init: echo "Start Parallel Test"
+    command: mvn verify -P parallel
